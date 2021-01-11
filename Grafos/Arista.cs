@@ -18,5 +18,10 @@ namespace Grafos
             destino = Destino;
             costo = setcosto;
         }
+
+        override public string ToString()
+        {
+            return $"Nodo Origen:{origen.ToString()}\nNodo Destino:{destino.ToString()}\nCosto:{costo}";
+        }
     }
 }

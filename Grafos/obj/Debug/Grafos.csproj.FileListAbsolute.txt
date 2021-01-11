@@ -5,3 +5,10 @@ C:\Users\Roger\source\repos\Grafos\Grafos\obj\Debug\Grafos.csprojAssemblyReferen
 C:\Users\Roger\source\repos\Grafos\Grafos\obj\Debug\Grafos.csproj.CoreCompileInputs.cache
 C:\Users\Roger\source\repos\Grafos\Grafos\obj\Debug\Grafos.exe
 C:\Users\Roger\source\repos\Grafos\Grafos\obj\Debug\Grafos.pdb
+D:\mendo\Documents\Sergio Mendoza\Proyectos\Grafo\Grafos\bin\Debug\Grafos.exe.config
+D:\mendo\Documents\Sergio Mendoza\Proyectos\Grafo\Grafos\bin\Debug\Grafos.exe
+D:\mendo\Documents\Sergio Mendoza\Proyectos\Grafo\Grafos\bin\Debug\Grafos.pdb
+D:\mendo\Documents\Sergio Mendoza\Proyectos\Grafo\Grafos\obj\Debug\Grafos.csprojAssemblyReference.cache
+D:\mendo\Documents\Sergio Mendoza\Proyectos\Grafo\Grafos\obj\Debug\Grafos.csproj.CoreCompileInputs.cache
+D:\mendo\Documents\Sergio Mendoza\Proyectos\Grafo\Grafos\obj\Debug\Grafos.exe
+D:\mendo\Documents\Sergio Mendoza\Proyectos\Grafo\Grafos\obj\Debug\Grafos.pdb

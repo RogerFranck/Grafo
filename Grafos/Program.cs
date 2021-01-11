@@ -10,11 +10,32 @@ namespace Grafos
     {
         static void Main(string[] args)
         {
-            List<int> numeros = new List<int> { 1, 2, 3, 4, 5 };
+            Grafo<string> grafo = new Grafo<string>();
 
-            Console.WriteLine(string.Join(",", numeros));
-            numeros.Remove(3);
-            Console.WriteLine(string.Join(",", numeros));
+            Nodo<string> nodo1 = grafo.addNodo("Tostado");
+            Nodo<string> nodo2 = grafo.addNodo("Sergio");
+            Nodo<string> nodo3 = grafo.addNodo("Roger");
+            Nodo<string> nodo4 = grafo.addNodo("Luis");
+
+            grafo.addArista(nodo1, nodo2);
+            grafo.addArista(nodo1, nodo3);
+            grafo.addArista(nodo4, nodo1);
+            grafo.addArista(nodo2, nodo4);
+
+            Console.WriteLine(grafo.ToString());
+            Console.WriteLine();
+            Console.WriteLine(nodo1.AristasToString());
+            Console.WriteLine();
+
+            grafo.removeArista(nodo3, nodo1);
+            Console.WriteLine(nodo1.AristasToString());
+
+            grafo.RemoveNodo(nodo4);
+            Console.WriteLine();
+            Console.WriteLine(grafo.ToString());
+            Console.WriteLine("\nAristas Nodo 1:\n" + nodo1.AristasToString());
+            Console.WriteLine("\nAristas Nodo 2:\n" + nodo2.AristasToString());
+
 
             Console.ReadLine();
         }

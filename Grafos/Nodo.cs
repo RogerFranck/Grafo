@@ -18,19 +18,15 @@ namespace Grafos
             Data = data;
         }
 
-        public void addArista(Arista<T> nuevaArista)
-        {
-            Aristas.Add(nuevaArista);
-        }
-
         public void removeArista(Arista<T> borrarArista)
         {
-            foreach(Arista<T> aristaActual in Aristas)
+            if(Aristas.FindIndex(e=> e == borrarArista) != -1)
             {
-                if(aristaActual == borrarArista)
-                {
-                    Aristas.Remove(aristaActual);
-                }
+                Aristas.Remove(borrarArista);
+            }
+            else
+            {
+                throw new Exception("Couldn't find the especified edge");
             }
         }
         public void BorrarNodo()
@@ -46,6 +42,22 @@ namespace Grafos
                     aristaActual.origen.removeArista(aristaActual);
                }
             }
+        }
+
+        override public string ToString()
+        {
+            return $"(ID:{Id}, value:{Data.ToString()})";
+        }
+        public string AristasToString()
+        {
+            string str = "[\n";
+            foreach (Arista<T> arista in Aristas)
+            {
+                str += $"{arista.ToString()}\n\n";
+            }
+
+            str += "]";
+            return str;
         }
     }
 }
