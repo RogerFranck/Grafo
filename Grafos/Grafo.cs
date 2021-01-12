@@ -83,5 +83,32 @@ namespace Grafos
             str += "]";
             return str;
         }
+
+        public string findPath(Nodo<T> nodo1, Nodo<T> nodo2)
+        {
+            string resultado = string.Empty;
+            List<Nodo<T>> Visitados = new List<Nodo<T>>();
+            List<Nodo<T>> NoVisitados = Nodos;
+            //Tabla de registros
+            List<Nodo<T>> Vertice = Nodos;
+            List<int> Distancia = new List<int>();
+            List<Nodo<T>> Anterior = new List<Nodo<T>>();
+
+            Nodo<T> NodoActual = NoVisitados[0];
+
+            while (Visitados.Count < Nodos.Count)
+            {
+                //Evaluar las opciones de Arista que tiene el nodo actual
+                List<Arista<T>> Opciones = NodoActual.Aristas;
+                
+                int? costoMin = null;
+                foreach(Arista<T> aristaActual in Opciones)
+                {
+
+                }
+            }
+
+            return resultado;
+        }
     }
 }

@@ -15,7 +15,7 @@ namespace Grafos
             Nodo<string> nodo1 = grafo.addNodo("Tostado");
             Nodo<string> nodo2 = grafo.addNodo("Sergio");
             Nodo<string> nodo3 = grafo.addNodo("Roger");
-            Nodo<string> nodo4 = grafo.addNodo("Luis");
+            Nodo<string> nodo4 = grafo.addNodo("Lui");
 
             grafo.addArista(nodo1, nodo2);
             grafo.addArista(nodo1, nodo3);
