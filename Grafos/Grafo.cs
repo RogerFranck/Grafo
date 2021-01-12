@@ -8,6 +8,7 @@ namespace Grafos
 {
     class Grafo <T>
     {
+        //R
         List<Nodo<T>> Nodos = new List<Nodo<T>>();
         private int contador;
 
@@ -27,6 +28,10 @@ namespace Grafos
 
         public void addArista(Nodo<T> nodo1, Nodo<T> nodo2, int costo = 1)//id, referencia al nodo
         {
+            if (costo < 0)
+            {
+                costo = costo * -1;
+            }
             //Validando que no existe una arista con esta conexión 
             bool existe = false;
             foreach(Arista<T> aristaActual in nodo1.Aristas)
@@ -83,7 +88,7 @@ namespace Grafos
             str += "]";
             return str;
         }
-
+        //L
         public (int? costoMin, List<Nodo<T>> camino) findPath(Nodo<T> Origen, Nodo<T> Destino)
         {
 
