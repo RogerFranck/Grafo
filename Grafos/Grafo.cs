@@ -84,31 +84,94 @@ namespace Grafos
             return str;
         }
 
-        public string findPath(Nodo<T> nodo1, Nodo<T> nodo2)
+        public (int? costoMin, List<Nodo<T>> camino) findPath(Nodo<T> Origen, Nodo<T> Destino)
         {
-            string resultado = string.Empty;
-            List<Nodo<T>> Visitados = new List<Nodo<T>>();
-            List<Nodo<T>> NoVisitados = Nodos;
-            //Tabla de registros
-            List<Nodo<T>> Vertice = Nodos;
-            List<int> Distancia = new List<int>();
-            List<Nodo<T>> Anterior = new List<Nodo<T>>();
 
-            Nodo<T> NodoActual = NoVisitados[0];
+            List<Nodo<T>> Visitados = new List<Nodo<T>>();
+            List<Nodo<T>> NoVisitados = new List<Nodo<T>>(Nodos);          
+
+            //Tabla de registros
+            Dictionary<int, (int? costo, Nodo<T> anterior)> Registros = new Dictionary<int, (int?, Nodo<T>)>();
+
+            foreach(Nodo<T> nodo in NoVisitados)
+            {
+                Registros.Add(nodo.Id, (null, null));
+            }
+            Registros[Origen.Id] = (0, null);
+
+            Nodo<T> NodoActual = Origen;
+            int costoAcumulado = 0;
 
             while (Visitados.Count < Nodos.Count)
             {
-                //Evaluar las opciones de Arista que tiene el nodo actual
-                List<Arista<T>> Opciones = NodoActual.Aristas;
-                
-                int? costoMin = null;
-                foreach(Arista<T> aristaActual in Opciones)
+                //Evaluar las opciones de Arista que tiene el nodo actual y Elegir la Arista con el menor costo               
+                Arista<T> costoMin = null;
+                NoVisitados.Remove(NodoActual);
+                foreach (Arista<T> aristaActual in NodoActual.Aristas)
                 {
-
+                    if(Visitados.FindIndex(e => e == getOtherNode(aristaActual, NodoActual)) != -1)
+                    {
+                        continue;
+                    }
+                    //Actualizar menor costo
+                    //if(costoMin == null || aristaActual.costo<costoMin.costo)
+                    //{
+                    //    costoMin = aristaActual;
+                    //}
+                    //Actualizar nodos destino en Registro solo si representa un costo menor al ya registrado
+                    Nodo<T> NodoDestino = getOtherNode(aristaActual, NodoActual);
+                    if (Registros[NodoDestino.Id].costo > Registros[NodoActual.Id].costo + aristaActual.costo || Registros[NodoDestino.Id].costo == null)
+                    {
+                        Registros[NodoDestino.Id] = (Registros[NodoActual.Id].costo + aristaActual.costo, NodoActual);
+                    }
                 }
+                Visitados.Add(NodoActual);
+                //costoAcumulado += costoMin.costo;
+
+                //Encontrar el de mínimo costo dentro de los No Visitados
+                Nodo<T> min = null;
+                foreach(Nodo<T> nodo in NoVisitados)
+                {
+                    //No considerar el cero
+                    if(Registros[nodo.Id].costo == 0)
+                    {
+                        continue;
+                    }
+                    if(min == null || Registros[nodo.Id].costo < Registros[min.Id].costo || (Registros[min.Id].costo == null))
+                    {
+                        min = nodo;
+                    }
+                }
+                NodoActual = min;
             }
 
-            return resultado;
+            NodoActual = Destino;
+            List<Nodo<T>> Camino = new List<Nodo<T>>();
+            Camino.Add(Destino);
+            while (Registros[NodoActual.Id].anterior != null)
+            {
+                Camino.Add(Registros[NodoActual.Id].anterior);
+                NodoActual = Registros[NodoActual.Id].anterior;
+            }
+            Camino.Reverse();
+
+            return (Registros[Destino.Id].costo, Camino);
+        }
+
+        private Nodo<T> getOtherNode(Arista<T> arista, Nodo<T> thisNode) 
+        {
+            if (arista.origen == thisNode)
+            {
+                return arista.destino;
+            }
+            else if (arista.destino == thisNode)
+            {
+                return arista.origen;
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 }

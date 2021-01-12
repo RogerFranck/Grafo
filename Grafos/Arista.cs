@@ -10,7 +10,7 @@ namespace Grafos
     {
         public Nodo<T> origen;
         public Nodo<T> destino;
-        int costo;
+        public int costo;
 
         public Arista(Nodo<T> Origen, Nodo<T> Destino, int setcosto)
         {
